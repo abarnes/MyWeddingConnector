@@ -1,0 +1,5 @@
+app/tmp
+app/webroot/files
+app/webroot/uploads
+app/config
+.DS_Store

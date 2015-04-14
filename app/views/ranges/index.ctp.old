@@ -1,0 +1,55 @@
+<h3>Manage Ranges</h3><br/>
+
+<div class="link">
+<?php echo $html->link('<< Admin Panel',array('controller'=>'pages','action'=>'admin')); ?><a href="/ranges/add" style="margin-left:15px;">Add Range</a>				
+<br/><br/>
+</div>
+
+<table>
+    <tr>
+        <th>
+            <?php echo $this->Paginator->sort('Category', 'Category.name'); ?>
+        </th>
+        <th>
+            <?php echo $this->Paginator->sort('Low', 'Range.low_end'); ?>
+        </th>
+        <th>
+            <?php echo $this->Paginator->sort('High', 'Range.high_end'); ?>
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    <?php foreach ($ranges as $u) { ?>
+    <tr>
+        <td>
+            <?php echo $u['Category']['name']; ?>
+        </td>
+        <td>
+            $<?php echo $u['Range']['low_end']; ?>
+        </td>
+        <td>
+	    $<?php echo $u['Range']['high_end']; ?>
+        </td>
+        <td>
+            <?php echo $html->link('Edit',array('action'=>'edit/'.$u['Range']['id'])); ?>
+            <?php echo $html->link(
+				'Delete', 
+				array('action'=>'delete/'.$u['Range']['id']), 
+				null, 
+				'Are You Sure You Want To Delete This Range?'
+			); ?>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
+
+<div class="link" style="text-align:center;width:100%;">
+    <!-- Shows the page numbers -->
+    <?php echo $this->Paginator->prev('<< Previous', null, null, array('class' => 'disabled')); ?>
+    <?php echo $this->Paginator->numbers(); ?>
+    <?php echo $this->Paginator->next('Next >>', null, null, array('class' => 'disabled')); ?>
+    <br/>
+    <!-- prints X of Y, where X is current page and Y is number of pages -->
+    <?php echo $this->Paginator->counter(); ?>
+</div>
